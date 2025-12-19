@@ -1,6 +1,7 @@
 // src/Pages/Profile/Profile.jsx
 import React, { useState } from "react";
-import "./profile.css";
+// Profile.jsx
+import "./Profile.css";
 import { FaMoon, FaSun, FaShoppingBag, FaCog, FaSignOutAlt } from "react-icons/fa";
 
 const Profile = ({ user, onLogout, dark, toggleDark }) => {

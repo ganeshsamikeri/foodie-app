@@ -1,73 +1,42 @@
-.chat-overlay {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  z-index: 9999;
+/* ================================
+   🔥 FIX RIGHT SIDE GAP (MOBILE)
+   ================================ */
+
+/* Lock horizontal overflow everywhere */
+html,
+body,
+#root,
+.app-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
 }
 
-.chat-panel {
-  width: 300px;
-  height: 380px;
-  background: var(--bg);
-  color: var(--text);
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+/* Prevent 100vw overflow issue */
+* {
+  max-width: 100%;
 }
 
-.chat-header {
-  background: var(--primary);
-  color: #fff;
-  padding: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Fix elements that usually cause overflow */
+.header,
+.navbar,
+.home-page,
+.section-wrapper {
+  width: 100%;
+  max-width: 100%;
 }
 
-.chat-body {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
+/* Fix floating animation causing sideways movement */
+.chat-ai-bubble,
+.float-cart {
+  transform: translateX(0) !important;
+  will-change: transform;
 }
 
-.msg {
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin: 6px 0;
-  max-width: 80%;
-}
-
-.msg.bot {
-  background: var(--bubble-bot);
-  align-self: flex-start;
-}
-
-.msg.user {
-  background: var(--bubble-user);
-  color: #fff;
-  align-self: flex-end;
-}
-
-.chat-input-box {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-
-.chat-input-box input {
-  flex: 1;
-  padding: 8px;
-  border: none;
-  outline: none;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.chat-input-box button {
-  background: var(--primary);
-  border: none;
-  padding: 0 15px;
-  color: #fff;
-  cursor: pointer;
+/* Mobile-only hard lock */
+@media (max-width: 768px) {
+  body {
+    position: relative;
+    overflow-x: hidden !important;
+  }
 }

@@ -1,0 +1,250 @@
+/* ============================================
+   GLOBAL BASE STYLES
+============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: #f8f8f8;
+  color: #222;
+  overflow-x: hidden;
+}
+
+.app-wrapper {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+
+/* ============================================
+   PAGE CONTAINER (optional)
+============================================ */
+.page-container {
+  padding: 20px;
+}
+
+
+
+/* ============================================
+   HIDING/NAVBAR TRANSITIONS
+============================================ */
+.navbar-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.25s ease;
+}
+
+.navbar-visible {
+  transform: translateY(0);
+  opacity: 1;
+  transition: 0.25s ease;
+}
+
+
+
+/* ============================================
+   SEARCH OVERLAY (full-screen slide up)
+============================================ */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 999;
+  transform: translateY(100%);
+  transition: 0.35s ease;
+}
+
+.search-overlay.open {
+  transform: translateY(0);
+}
+
+.search-overlay .search-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+.search-close-btn {
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+
+
+/* ============================================
+   FLOATING CART BUTTON
+============================================ */
+.floating-cart {
+  position: fixed;
+  right: 20px;
+  bottom: 95px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ff6b00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  cursor: pointer;
+  z-index: 902;
+  transition: 0.2s;
+}
+
+.floating-cart:hover {
+  transform: scale(1.08);
+}
+
+
+/* Cart Count Badge */
+.floating-cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #fff;
+  color: #ff6b00;
+  padding: 3px 6px;
+  font-size: 11px;
+  border-radius: 50%;
+  font-weight: 600;
+}
+
+
+
+/* ============================================
+   FLOATING BOTTOM BAR
+============================================ */
+.floating-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  background: #ffffffcc;
+  backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -4px 14px rgba(0,0,0,0.08);
+  z-index: 900;
+}
+
+.floating-bottom-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.floating-bottom-icon {
+  width: 26px;
+  opacity: 0.8;
+}
+
+.floating-bottom-text {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* Badges (Offers, Chat, Cart) */
+.floating-badge {
+  position: absolute;
+  top: -4px;
+  right: -10px;
+  background: #ff6b00;
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 10px;
+  border-radius: 50%;
+}
+
+
+
+/* ============================================
+   CHAT SUPPORT PANEL
+============================================ */
+.chat-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 90px;
+  width: 320px;
+  height: 420px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  padding: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+}
+
+.chat-close {
+  font-size: 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+
+
+/* ============================================
+   FOOTER
+============================================ */
+footer {
+  background: #fff;
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+}
+
+
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 650px) {
+  .chat-panel {
+    width: 90%;
+    height: 430px;
+    right: 5%;
+  }
+}

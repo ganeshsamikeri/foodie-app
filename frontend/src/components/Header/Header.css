@@ -1,0 +1,119 @@
+/* =============================
+   HEADER WRAPPER
+============================= */
+.header {
+    height: 34vw;
+    margin: 30px auto;
+    background-image: url("/header_img.png");
+    background-repeat: no-repeat;
+    background-size: cover;            /* ⭐ Makes hero image fill properly */
+    background-position: center;
+
+    display: flex;
+    align-items: center;               /* ⭐ Vertically center content */
+    justify-content: center;           /* ⭐ Horizontally center content */
+    text-align: center;                /* ⭐ Center text */
+    padding: 0 6vw;
+
+    position: relative;
+}
+
+
+/* =============================
+   HEADER CONTENT (Centered)
+============================= */
+.header-content {
+    max-width: 60%;
+    animation: fadeIn 1.2s ease;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;               /* ⭐ Center items horizontally */
+    justify-content: center;           /* ⭐ Center items vertically */
+    gap: 1.2vw;
+
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.55);
+}
+
+.header-content h2 {
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    font-size: clamp(26px, 4.5vw, 56px);
+}
+
+.header-content p {
+    color: white;
+    opacity: 0.95;
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.5;
+    max-width: 480px;
+}
+
+.header-content button {
+    border: none;
+    color: #444;
+    font-weight: 600;
+    padding: 1vw 2.7vw;
+    background-color: white;
+    font-size: clamp(13px, 1.1vw, 18px);
+    border-radius: 50px;
+    cursor: pointer;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.20);
+    transition: 0.25s ease-out;
+}
+
+.header-content button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =============================
+   RESPONSIVE DESIGN
+============================= */
+@media (max-width: 1050px) {
+    .header {
+        height: 45vw;
+    }
+    .header-content {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 750px) {
+    .header {
+        height: 78vw;
+        padding: 0 4vw;
+    }
+
+    .header-content {
+        max-width: 90%;
+        gap: 16px;
+    }
+
+    .header-content p {
+        display: none; /* Optional on mobile */
+    }
+
+    .header-content button {
+        padding: 10px 22px;
+        font-size: 14px;
+    }
+}
+
+
+/* =============================
+   FADE-IN ANIMATION
+============================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

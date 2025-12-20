@@ -36,7 +36,9 @@ const FoodDisplay = ({ category }) => {
                 <p className="food-description">
                   {item.description || "Delicious and freshly made!"}
                 </p>
-                <p className="food-price">${item.price}</p>
+
+                {/* Updated: INR Symbol */}
+                <p className="food-price">₹{item.price}</p>
 
                 <button
                   className="view-details-btn"
@@ -69,11 +71,15 @@ const FoodDisplay = ({ category }) => {
             />
             <div className="food-modal-content">
               <h3>{selectedFood.name}</h3>
+
               <div className="food-rating">
                 ⭐ {selectedFood.rating ? selectedFood.rating.toFixed(1) : "4.5"} / 5
               </div>
+
               <p>{selectedFood.description}</p>
-              <p className="food-price">${selectedFood.price}</p>
+
+              {/* Updated: INR Symbol */}
+              <p className="food-price">₹{selectedFood.price}</p>
 
               <div className="cart-controls">
                 {cartItems[selectedFood.name] ? (

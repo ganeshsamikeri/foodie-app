@@ -10,22 +10,32 @@ const FloatingCartButton = () => {
 
   const [animate, setAnimate] = useState(false);
 
-  // Trigger shake animation when count changes
+  // Animate ONLY when item is added
   useEffect(() => {
     if (count > 0) {
       setAnimate(true);
-      const timer = setTimeout(() => setAnimate(false), 600);
+      const timer = setTimeout(() => setAnimate(false), 500);
       return () => clearTimeout(timer);
     }
   }, [count]);
 
-  if (count === 0) return null; // Hide if cart is empty
-
   return (
-    <Link to="/cart" className={`float-cart ${animate ? "shake" : ""}`}>
+    <Link
+      to="/cart"
+      className={`float-cart ${animate ? "burst" : ""}`}
+    >
       <img src={assets.basket_icon} alt="cart" />
-      <span className="badge">{count}</span>
-      <span className="shimmer"></span>
+
+      {/* SHOW COUNT ONLY IF CART HAS ITEMS */}
+      {count > 0 && <span className="badge">{count}</span>}
+
+      {/* BURST ANIMATION ONLY ON ADD */}
+      {animate && count > 0 && (
+        <>
+          <span className="ring ring1"></span>
+          <span className="ring ring2"></span>
+        </>
+      )}
     </Link>
   );
 };

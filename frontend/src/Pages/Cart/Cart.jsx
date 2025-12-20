@@ -17,7 +17,7 @@ const Cart = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Calculate total price
+  // Calculate total price (PRICE IS ALREADY INR)
   const getTotalPrice = () => {
     return food_list.reduce((total, item) => {
       const qty = cartItems[item.name] || 0;
@@ -56,14 +56,19 @@ const Cart = () => {
         <div className="cart-list">
           {cartFoods.map((item, index) => (
             <div key={index} className="cart-item fade-in">
-              <img src={item.image} alt={item.name} className="cart-item-img" />
+              <img
+                src={item.image}
+                alt={item.name}
+                className="cart-item-img"
+              />
 
               <div className="cart-item-details">
                 <h4>{item.name}</h4>
-                <p>${item.price.toFixed(2)} each</p>
+
+                {/* PRICE EACH */}
+                <p>₹{item.price.toFixed(2)} each</p>
 
                 <div className="cart-quantity-controls">
-
                   {/* – BUTTON */}
                   <button
                     className="qty-btn"
@@ -72,7 +77,7 @@ const Cart = () => {
                       toast("Item removed");
                     }}
                   >
-                    -
+                    −
                   </button>
 
                   <span>{cartItems[item.name]}</span>
@@ -90,15 +95,16 @@ const Cart = () => {
                 </div>
               </div>
 
+              {/* ITEM TOTAL */}
               <div className="cart-item-total">
-                ${(item.price * cartItems[item.name]).toFixed(2)}
+                ₹{(item.price * cartItems[item.name]).toFixed(2)}
               </div>
             </div>
           ))}
 
-          {/* Summary */}
+          {/* SUMMARY */}
           <div className="cart-summary">
-            <h3>Total: ${getTotalPrice().toFixed(2)}</h3>
+            <h3>Total: ₹{getTotalPrice().toFixed(2)}</h3>
 
             <button className="checkout-btn" onClick={handleCheckout}>
               Proceed to Checkout →

@@ -38,9 +38,10 @@ const PlaceOrder = () => {
       return;
     }
 
-    alert(`🎉 Order placed successfully!\n\nThank you, ${orderInfo.name}!\nYour total: $${totalPrice.toFixed(2)}`);
+    alert(
+      `🎉 Order placed successfully!\n\nThank you, ${orderInfo.name}!\nYour total: ₹${totalPrice.toFixed(2)}`
+    );
 
-    // You can navigate to a success page here if you want
     navigate("/");
   };
 
@@ -98,7 +99,7 @@ const PlaceOrder = () => {
               <option value="COD">Cash on Delivery</option>
               <option value="UPI">UPI</option>
               <option value="Card">Credit/Debit Card</option>
-              <option value="Card">Amazon Pay</option>
+              <option value="Amazon">Amazon Pay</option>
             </select>
           </label>
 
@@ -119,14 +120,14 @@ const PlaceOrder = () => {
                   <span>
                     {item.name} × {cartItems[item.name]}
                   </span>
-                  <span>${(item.price * cartItems[item.name]).toFixed(2)}</span>
+                  <span>₹{(item.price * cartItems[item.name]).toFixed(2)}</span>
                 </li>
               ))}
           </ul>
 
           <hr />
           <p className="total">
-            <strong>Total:</strong> ${totalPrice.toFixed(2)}
+            <strong>Total:</strong> ₹{totalPrice.toFixed(2)}
           </p>
         </div>
       </div>

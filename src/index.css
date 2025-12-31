@@ -1,0 +1,289 @@
+/* =============================
+   GLOBAL RESET (VERY IMPORTANT)
+============================= */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* =============================
+   NAVBAR MAIN
+============================= */
+.navbar {
+  width: 100%;
+  height: 70px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+}
+
+/* =============================
+   LOGO
+============================= */
+.navbar-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff5c5c;
+  text-decoration: none;
+}
+
+/* =============================
+   NAV MENU (DESKTOP)
+============================= */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  position: relative;
+}
+
+.navbar-menu li.active a {
+  color: #ff5c5c;
+  font-weight: 600;
+}
+
+/* Active underline */
+.navbar-menu li.active a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: #ff5c5c;
+  border-radius: 2px;
+}
+
+/* =============================
+   HAMBURGER (MOBILE)
+============================= */
+.hamburger {
+  display: none;
+  width: 26px;
+  height: 22px;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background: #333;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* =============================
+   MOBILE MENU
+============================= */
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 80%;
+    height: calc(100vh - 70px);
+    background: #fff;
+    flex-direction: column;
+    padding: 24px;
+    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.15);
+    transition: left 0.35s ease;
+    z-index: 1999;
+  }
+
+  .navbar-menu.open {
+    left: 0;
+  }
+
+  .navbar-menu li {
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .navbar-menu li a {
+    font-size: 17px;
+  }
+}
+
+/* =============================
+   RIGHT SIDE
+============================= */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Icons */
+.nav-icon,
+.navbar-search-icon img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+/* Cart */
+.navbar-search-icon {
+  position: relative;
+}
+
+.dot {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  width: 18px;
+  height: 18px;
+  background: #ff4d4f;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =============================
+   SIGN IN
+============================= */
+.signin-btn {
+  background: #ff5c5c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* =============================
+   PROFILE
+============================= */
+.profile-container {
+  position: relative;
+}
+
+.profile-initial {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ff5c5c;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* =============================
+   PROFILE DROPDOWN
+============================= */
+.profile-dropdown {
+  position: absolute;
+  top: 54px;
+  right: 6px;
+  width: 220px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
+  padding: 14px;
+  z-index: 5000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 18px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+
+.pd-user {
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.pd-user strong {
+  display: block;
+  font-size: 14px;
+}
+
+.pd-user span {
+  font-size: 12px;
+  color: #777;
+}
+
+.pd-link {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.pd-link:hover {
+  background: #f5f5f5;
+}
+
+.pd-logout-btn {
+  background: #ff4d4f;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* =============================
+   OVERLAY
+============================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1500;
+}

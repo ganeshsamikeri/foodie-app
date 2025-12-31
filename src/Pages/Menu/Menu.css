@@ -1,0 +1,31 @@
+.menu-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 110px 6vw 60px; /* fixed top spacing below navbar */
+}
+
+.menu-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #222;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .menu-page {
+        padding: 95px 4vw 50px;
+    }
+
+    .menu-title {
+        font-size: 28px;
+        margin-bottom: 18px;
+    }
+}
+/* Hide footer on selected pages */
+.no-footer ~ .footer {
+    display: none !important;
+}

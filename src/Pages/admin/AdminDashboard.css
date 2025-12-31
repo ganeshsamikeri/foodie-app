@@ -1,0 +1,49 @@
+.admin-dashboard {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.total { background: #34495e; }
+.delivered { background: #2ecc71; }
+.pending { background: #f39c12; }
+.cancelled { background: #e74c3c; }
+.revenue { background: #9b59b6; }
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  height: 200px;
+  margin-top: 40px;
+}
+
+.chart div {
+  flex: 1;
+  background: #3498db;
+  color: white;
+  text-align: center;
+  border-radius: 6px 6px 0 0;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 18px;
+}

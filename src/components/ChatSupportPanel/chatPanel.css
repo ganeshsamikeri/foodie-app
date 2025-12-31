@@ -1,0 +1,42 @@
+/* ================================
+   🔥 FIX RIGHT SIDE GAP (MOBILE)
+   ================================ */
+
+/* Lock horizontal overflow everywhere */
+html,
+body,
+#root,
+.app-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* Prevent 100vw overflow issue */
+* {
+  max-width: 100%;
+}
+
+/* Fix elements that usually cause overflow */
+.header,
+.navbar,
+.home-page,
+.section-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Fix floating animation causing sideways movement */
+.chat-ai-bubble,
+.float-cart {
+  transform: translateX(0) !important;
+  will-change: transform;
+}
+
+/* Mobile-only hard lock */
+@media (max-width: 768px) {
+  body {
+    position: relative;
+    overflow-x: hidden !important;
+  }
+}

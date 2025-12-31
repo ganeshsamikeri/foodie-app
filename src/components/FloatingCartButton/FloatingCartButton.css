@@ -1,0 +1,99 @@
+.float-cart {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 62px;
+  height: 62px;
+  background: #ff6b00;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  overflow: hidden;
+}
+
+.float-cart:hover {
+  transform: scale(1.07);
+}
+
+.float-cart img {
+  width: 32px;
+  filter: brightness(100);
+}
+
+/* Badge count */
+.float-cart .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: white;
+  color: #ff6b00;
+  font-size: 13px;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Glow effect */
+.float-cart {
+  animation: glow 2.5s infinite ease-in-out;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 12px rgba(255,107,0,0.6); }
+  50% { box-shadow: 0 0 22px rgba(255,107,0,0.9); }
+  100% { box-shadow: 0 0 12px rgba(255,107,0,0.6); }
+}
+
+/* Shake (when item added) */
+.shake {
+  animation: shakeAnim 0.6s;
+}
+
+@keyframes shakeAnim {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* Shimmer sweep */
+.shimmer {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  animation: shimmerMove 2s infinite;
+}
+
+@keyframes shimmerMove {
+  0% { left: -120%; }
+  100% { left: 120%; }
+}
+@media (max-width: 768px) {
+  .float-cart {
+    right: 12px;
+    bottom: 80px;
+    transform: scale(0.9);
+    z-index: 999;
+  }
+}

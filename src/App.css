@@ -1,0 +1,284 @@
+/* ===== GLOBAL RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== IMAGES ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== COMMON LAYOUT ===== */
+.container,
+.page,
+.home-page,
+.section-wrapper {
+  width: 100%;
+  padding: 16px;
+}
+
+/* ===== TEXT ===== */
+h1 { font-size: 32px; }
+h2 { font-size: 24px; }
+h3 { font-size: 18px; }
+p  { font-size: 16px; }
+
+/* ===== FLOATING UI ===== */
+.float-cart,
+.chat-ai-bubble {
+  position: fixed;
+  z-index: 999;
+}
+
+/* =========================
+   📱 MOBILE (ALL CSS)
+   ========================= */
+@media (max-width: 768px) {
+
+  .container,
+  .page,
+  .home-page,
+  .section-wrapper {
+    padding: 12px;
+  }
+
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 16px; }
+  p  { font-size: 14px; }
+
+  /* Header */
+  .header {
+    height: auto;
+    padding: 12px;
+  }
+
+  /* Cards */
+  .food-list,
+  .dish-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Floating cart */
+  .float-cart {
+    right: 12px;
+    bottom: 80px;
+    transform: scale(0.9);
+  }
+
+  /* Chat bubble */
+  .chat-ai-bubble {
+    right: 12px;
+    bottom: 140px;
+    transform: scale(0.9);
+  }
+}
+/* ================================
+   🔥 FIX RIGHT SIDE GAP (MOBILE)
+   ================================ */
+
+/* Lock horizontal overflow everywhere */
+html,
+body,
+#root,
+.app-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* Prevent 100vw overflow issue */
+* {
+  max-width: 100%;
+}
+
+/* Fix elements that usually cause overflow */
+.header,
+.navbar,
+.home-page,
+.section-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Fix floating animation causing sideways movement */
+.chat-ai-bubble,
+.float-cart {
+  transform: translateX(0) !important;
+  will-change: transform;
+}
+
+/* Mobile-only hard lock */
+@media (max-width: 768px) {
+  body {
+    position: relative;
+    overflow-x: hidden !important;
+  }
+}
+/* FINAL horizontal lock */
+html,
+body,
+#root,
+.app-wrapper {
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+/* =====================================
+   FIX "STUCK" SCROLL – CSS ONLY
+   ===================================== */
+
+/* Lock horizontal scroll ONLY */
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+/* ===============================
+   SEARCH OVERLAY SCROLL FIX
+   =============================== */
+.swiggy-search-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100dvh;          /* mobile-safe height */
+  overflow-y: auto;       /* ✅ allow vertical scroll */
+  overflow-x: hidden;     /* ❌ block horizontal */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent children from breaking width */
+.swiggy-search-wrapper * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   HEADER CONTENT FIX
+   =============================== */
+.header,
+.header-content {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Text wrapping (prevents push) */
+.header-content h2,
+.header-content p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ===============================
+   CATEGORY CHIPS FIX
+   =============================== */
+.category-list,
+.category-row,
+.chips-row {
+  display: flex;
+  flex-wrap: wrap;        /* ✅ important */
+  gap: 8px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   CLOSE (X) BUTTON FIX
+   =============================== */
+.search-close,
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+/* ===============================
+   CHAT BUBBLE SAFETY
+   =============================== */
+.chat-ai-bubble {
+  right: 12px;
+  transform: translateX(0) !important;
+}
+/* =====================================
+   FIX CART & CHAT MISALIGNMENT (MOBILE)
+   ===================================== */
+
+/* Floating cart button */
+.float-cart {
+  position: fixed;
+  right: 12px;
+  bottom: 150px;          /* ABOVE bottom bar */
+  width: 56px;
+  height: 56px;
+  z-index: 1002;
+}
+
+/* Chat bubble button */
+.chat-ai-bubble {
+  position: fixed;
+  right: 12px;
+  bottom: 220px;          /* STACKED ABOVE CART */
+  width: 56px;
+  height: 56px;
+  z-index: 1003;
+}
+
+/* Remove animation side-shift issues */
+.float-cart,
+.chat-ai-bubble {
+  transform: translateX(0) !important;
+}
+
+/* =====================================
+   BOTTOM NAV SAFETY
+   ===================================== */
+.floating-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1000;
+}
+
+/* Prevent content hiding behind bottom bar */
+body {
+  padding-bottom: 90px;
+}
+
+/* =====================================
+   MOBILE ONLY HARD FIX
+   ===================================== */
+@media (max-width: 768px) {
+
+  html,
+  body,
+  #root {
+    overflow-x: hidden !important;
+  }
+
+  /* Ensure buttons stay inside screen */
+  .float-cart,
+  .chat-ai-bubble {
+    max-width: 56px;
+    max-height: 56px;
+  }
+}
+
+

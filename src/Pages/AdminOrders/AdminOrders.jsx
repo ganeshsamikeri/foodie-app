@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../api/axios";
 import { toast } from "react-hot-toast";
 import "./AdminOrders.css";
-
-const API_URL = "http://localhost:8080";
 
 const STATUSES = [
   "PLACED",
@@ -17,24 +15,13 @@ const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const storedUser = JSON.parse(localStorage.getItem("foodie_user"));
-  const token = storedUser?.token;
-
   /* ================= FETCH ORDERS ================= */
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(
-          `${API_URL}/api/orders/admin/all`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
+        const res = await api.get("/api/admin/orders/all");
         setOrders(res.data || []);
-      } catch {
+      } catch (err) {
         toast.error("Failed to load admin orders");
       } finally {
         setLoading(false);
@@ -42,23 +29,23 @@ const AdminOrders = () => {
     };
 
     fetchOrders();
-  }, [token]);
+  }, []);
 
   /* ================= UPDATE STATUS ================= */
   const updateStatus = async (orderId, status) => {
     try {
-      await axios.put(
-        `${API_URL}/api/admin/orders/${orderId}/status`,
-        null,
-        {
-          params: { status },
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await api.put(`/api/admin/orders/${orderId}/status`, null, {
+        params: { status },
+      });
 
       toast.success("Status updated");
+
+      // refresh orders
+      setOrders((prev) =>
+        prev.map((o) =>
+          o.id === orderId ? { ...o, status } : o
+        )
+      );
     } catch {
       toast.error("Status update failed");
     }
@@ -67,17 +54,14 @@ const AdminOrders = () => {
   /* ================= CANCEL ================= */
   const cancelOrder = async (orderId) => {
     try {
-      await axios.put(
-        `${API_URL}/api/admin/orders/${orderId}/cancel`,
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
+      await api.put(`/api/admin/orders/${orderId}/cancel`);
       toast.success("Order cancelled");
+
+      setOrders((prev) =>
+        prev.map((o) =>
+          o.id === orderId ? { ...o, status: "CANCELLED" } : o
+        )
+      );
     } catch {
       toast.error("Cancel failed");
     }
@@ -89,11 +73,8 @@ const AdminOrders = () => {
     <div className="admin-orders">
       <h2>Admin Orders</h2>
 
-      {orders.map((order, index) => (
-        <div
-          key={`${order.id}-${index}`}   // ✅ FIXED DUPLICATE KEY
-          className="admin-order-card"
-        >
+      {orders.map((order) => (
+        <div key={order.id} className="admin-order-card">
           <div className="header">
             <b>Order #{order.id}</b>
             <span className={`status ${order.status}`}>
@@ -105,14 +86,13 @@ const AdminOrders = () => {
           <p>Total: ₹{order.totalAmount}</p>
 
           <ul>
-            {order.items?.map((item, i) => (
-              <li key={`${item.foodId}-${i}`}>
+            {order.items?.map((item) => (
+              <li key={item.foodId}>
                 {item.foodName} × {item.quantity}
               </li>
             ))}
           </ul>
 
-          {/* STATUS CHANGE */}
           <select
             value={order.status}
             disabled={
@@ -130,7 +110,6 @@ const AdminOrders = () => {
             ))}
           </select>
 
-          {/* CANCEL */}
           {order.status !== "DELIVERED" &&
             order.status !== "CANCELLED" && (
               <button

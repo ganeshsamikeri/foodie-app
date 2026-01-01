@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
+import api from "../../api/axios";
 import { toast } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import "./MyOrders.css";
-
-const API_URL = "http://localhost:8080";
 
 const STATUS_STEPS = [
   "PLACED",
@@ -19,28 +17,21 @@ const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const storedUser = JSON.parse(localStorage.getItem("foodie_user"));
-  const token = storedUser?.token;
-
   /* ================= FETCH ORDERS ================= */
   useEffect(() => {
-    if (!token) {
-      setLoading(false);
-      return;
-    }
-
-    axios
-      .get(`${API_URL}/api/orders/my-orders`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
+    const fetchOrders = async () => {
+      try {
+        const res = await api.get("/api/orders/my-orders");
         setOrders(res.data || []);
-      })
-      .catch(() => toast.error("Failed to load orders"))
-      .finally(() => setLoading(false));
-  }, [token]);
+      } catch {
+        toast.error("Failed to load orders");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
 
   if (loading) {
     return <h3 className="center">Loading orders...</h3>;
@@ -54,7 +45,7 @@ const MyOrders = () => {
 
       {orders.map((order) => (
         <OrderCard
-          key={`${order.id}-${order.createdAt}`}   // ✅ FIXED DUPLICATE KEY
+          key={`${order.id}-${order.createdAt}`}
           order={order}
         />
       ))}
@@ -66,9 +57,6 @@ const MyOrders = () => {
 const OrderCard = ({ order }) => {
   const { food_list, addToCart } = useContext(StoreContext);
   const navigate = useNavigate();
-
-  const storedUser = JSON.parse(localStorage.getItem("foodie_user"));
-  const token = storedUser?.token;
 
   const isCancelled = order.status === "CANCELLED";
   const stepIndex = STATUS_STEPS.indexOf(order.status);
@@ -110,15 +98,7 @@ const OrderCard = ({ order }) => {
   /* ================= CANCEL ORDER ================= */
   const handleCancel = async () => {
     try {
-      await axios.put(
-        `${API_URL}/api/admin/orders/${order.id}/cancel`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await api.put(`/api/admin/orders/${order.id}/cancel`);
       toast.success("Order cancelled ❌");
     } catch {
       toast.error("Cannot cancel this order");

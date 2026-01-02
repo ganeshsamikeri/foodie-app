@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../api/axios";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const fetchStats = async () => {
+      try {
+        const res = await api.get("/api/admin/dashboard");
+        setStats(res.data);
+      } catch (err) {
+        console.error("Dashboard error", err);
+      }
+    };
 
-    axios.get("http://localhost:8080/api/admin/dashboard", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(res => setStats(res.data))
-    .catch(err => console.error("Dashboard error", err));
+    fetchStats();
   }, []);
 
   if (!stats) return <p className="loading">Loading dashboard...</p>;
@@ -33,7 +34,6 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* SIMPLE BAR CHART */}
       <div className="chart">
         <div style={{ height: stats.delivered * 10 }}>Delivered</div>
         <div style={{ height: stats.pending * 10 }}>Pending</div>

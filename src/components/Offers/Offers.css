@@ -1,0 +1,102 @@
+.offers-section {
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.offers-container {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 10px 4px;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    margin-top: 10px;
+}
+
+.offers-container::-webkit-scrollbar {
+    display: none;
+}
+
+.offer-card {
+    min-width: 380px;
+    height: 180px;
+    border-radius: var(--radius-xl);
+    padding: 30px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--primary-gradient);
+}
+
+.offer-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.offer-tag {
+    font-size: 12px;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    letter-spacing: 1px;
+    width: fit-content;
+    margin-bottom: 12px;
+}
+
+.offer-card h3 {
+    font-size: 32px;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.offer-card p {
+    font-size: 16px;
+    opacity: 0.95;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.promo-code {
+    margin-top: 20px;
+}
+
+.promo-code span {
+    font-size: 13px;
+    font-weight: 800;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+.offer-decoration {
+    position: absolute;
+    right: -30px;
+    bottom: -30px;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .offer-card {
+        min-width: 300px;
+        height: 150px;
+        padding: 24px;
+    }
+
+    .offer-card h3 {
+        font-size: 26px;
+    }
+}

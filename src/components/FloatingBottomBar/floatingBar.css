@@ -1,99 +1,69 @@
-/* ----------------------------------------
-   BASE BAR STYLES + BLUR + DARK MODE
------------------------------------------ */
-
 .floating-bottom-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px calc(env(safe-area-inset-right) + 12px)
-    calc(env(safe-area-inset-bottom) + 12px)
-    calc(env(safe-area-inset-left) + 12px);
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(18px);
-  border-top: 2px solid rgba(255, 255, 255, 0.25);
-
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-around;
   align-items: center;
-
+  padding: 0 20px 10px;
+  z-index: 4000;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.04);
   transform: translateY(100%);
-  transition: transform 0.35s ease;
-  z-index: 999;
-  animation: glowBorder 3s infinite linear;
-  border-radius: 18px 18px 0 0;
-}
-
-.floating-bottom-bar.dark {
-  background: rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .floating-bottom-bar.show {
   transform: translateY(0);
 }
 
-.floating-bottom-bar.hide {
-  transform: translateY(110%);
-}
-
-.floating-bottom-bar.bounce {
-  animation: bounceIn 0.4s ease-out;
-}
-
-/* Glowing animated border */
-@keyframes glowBorder {
-  0% {
-    box-shadow: 0 -0px 18px rgba(255, 0, 140, 0.45);
-  }
-  50% {
-    box-shadow: 0 -0px 22px rgba(0, 160, 255, 0.6);
-  }
-  100% {
-    box-shadow: 0 -0px 18px rgba(255, 0, 140, 0.45);
-  }
-}
-
-/* Bounce animation */
-@keyframes bounceIn {
-  0% {
-    transform: translateY(120%);
-  }
-  60% {
-    transform: translateY(-8%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* ITEMS */
 .fbb-item {
-  position: relative;
-  text-align: center;
-  color: #222;
-  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
   cursor: pointer;
+  transition: 0.2s;
+  color: #3d4152;
+  position: relative;
 }
 
-.dark .fbb-item {
-  color: #fff;
+.fbb-item:hover {
+  color: var(--primary-color);
+  transform: translateY(-4px);
 }
 
 .fbb-icon {
-  font-size: 20px;
+  font-size: 24px;
 }
 
-.badge {
+.fbb-item .badge {
   position: absolute;
-  top: -4px;
-  right: -8px;
-  background: #ff004c;
-  padding: 2px 6px;
-  border-radius: 50%;
-  font-size: 10px;
+  top: 4px;
+  right: 6px;
+  background: var(--primary-color);
   color: white;
+  font-size: 10px;
+  font-weight: 900;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.fbb-item span {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
 }
 
 /* ----------------------------------------
@@ -101,42 +71,65 @@
 ----------------------------------------- */
 .chat-ai-bubble {
   position: fixed;
-  bottom: 90px;
-  right: 22px;
-  width: 55px;
-  height: 55px;
-  background: linear-gradient(145deg, #8a2be2, #ff0088);
+  bottom: 100px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  background: var(--primary-gradient);
   color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 22px;
-
-  box-shadow: 0 5px 18px rgba(255, 0, 128, 0.6);
+  font-size: 26px;
+  box-shadow: 0 12px 30px rgba(255, 56, 92, 0.4);
   cursor: pointer;
-  z-index: 9999;
-
-  animation: aiFloat 3s infinite ease-in-out;
+  z-index: 4000;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.chat-ai-bubble.dark {
-  background: linear-gradient(145deg, #00aaff, #ff00dd);
+.chat-ai-bubble:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 16px 40px rgba(255, 56, 92, 0.5);
 }
 
 .chat-badge {
   position: absolute;
-  top: -6px;
-  right: -6px;
-  background: #ff004c;
-  padding: 3px 7px;
+  top: -4px;
+  right: -4px;
+  background: white;
+  color: var(--primary-color);
+  padding: 3px 8px;
   border-radius: 50%;
-  color: #fff;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes aiFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .floating-bottom-bar {
+    height: 75px;
+    padding-bottom: 15px;
+  }
+
+  .chat-ai-bubble {
+    bottom: 90px;
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+  }
 }

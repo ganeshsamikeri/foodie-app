@@ -1,0 +1,119 @@
+.newsletter-section {
+    padding: 10px 0;
+}
+
+.newsletter-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    border-radius: var(--radius-xl);
+    padding: 80px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-premium);
+}
+
+.newsletter-content {
+    max-width: 550px;
+    z-index: 2;
+}
+
+.newsletter-content h2 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+}
+
+.newsletter-content p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.newsletter-content strong {
+    color: var(--primary-color);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 18px 25px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.newsletter-form input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-color);
+}
+
+.newsletter-form button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 35px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 16px;
+    transition: var(--transition-normal);
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-3px);
+    background: var(--primary-hover);
+    box-shadow: 0 10px 20px rgba(255, 92, 92, 0.3);
+}
+
+.newsletter-note {
+    font-size: 13px !important;
+    opacity: 0.5 !important;
+    margin-bottom: 0 !important;
+}
+
+.newsletter-decor {
+    width: 350px;
+    z-index: 2;
+}
+
+.newsletter-decor img {
+    width: 100%;
+    transform: scale(1.2) rotate(-5deg);
+}
+
+@media (max-width: 1000px) {
+    .newsletter-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 30px;
+    }
+
+    .newsletter-content {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form button {
+        padding: 18px;
+    }
+
+    .newsletter-decor {
+        width: 250px;
+    }
+}

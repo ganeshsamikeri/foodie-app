@@ -1,7 +1,7 @@
 import api from "./axios";
 
-export const placeOrder = (items) =>
-  api.post("/api/orders/place", items);
-
-export const getMyOrders = () =>
-  api.get("/api/orders/my-orders");
+// GET MY ORDERS (JWT REQUIRED)
+export const getMyOrders = async () => {
+  const response = await api.get("/api/orders");
+  return response.data;
+};

@@ -5,49 +5,37 @@ import { assets } from "../../assets/assets";
 const AppDownload = () => {
   return (
     <div className="app-download" id="app-download">
-      <div className="app-download-content">
-        <h2>
-          Download the <span>Foodie</span> App
-        </h2>
-        <p>
-          Order your favorite meals on the go — fast, easy, and delicious!  
-          Get the app now and enjoy exclusive deals 🍔📱
-        </p>
-
-        <div className="download-section">
-          {/* Left: App store buttons */}
-          <div className="download-buttons">
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img
-                src={assets.play_store}
-                alt="Download on Google Play"
-                className="store-icon"
-              />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img
-                src={assets.app_store}
-                alt="Download on App Store"
-                className="store-icon"
-              />
-            </a>
-          </div>
-
-          {/* Right: QR code */}
-          <div className="qr-section">
-            <img
-              src={assets.qr_code}
-              alt="Scan QR to download Foodie App"
-              className="qr-code"
-            />
-            <p>Scan to Download</p>
-          </div>
+      <div className="app-download-container">
+        <div className="app-download-left">
+            <span className="app-badge">BEST EXPERIENCE</span>
+            <h2>Download the <span>Foodie</span> Mobile App</h2>
+            <p>
+              Order from your favorite restaurants and track your food in real-time. 
+              Get <strong>₹150 OFF</strong> on your first app order!
+            </p>
+            <div className="app-platforms">
+                <div className="platform-btn">
+                    <img src={assets.play_store} alt="Google Play" />
+                </div>
+                <div className="platform-btn">
+                    <img src={assets.app_store} alt="App Store" />
+                </div>
+            </div>
+            <div className="app-features-list">
+                <div className="feat-item">✓ Live Tracking</div>
+                <div className="feat-item">✓ Super Fast Delivery</div>
+                <div className="feat-item">✓ Exclusive App Discounts</div>
+            </div>
         </div>
-      </div>
-
-      {/* Right: app image */}
-      <div className="app-image">
-        <img src={assets.mobile_app_preview} alt="Foodie App Preview" />
+        <div className="app-download-right">
+            <div className="phone-mockup">
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/food-delivery-app-illustration-download-in-svg-png-gif-formats--hamburger-mobile-services-on-screen-fast-pack-business-illustrations-4712079.png" alt="App Preview" />
+            </div>
+            <div className="floating-badge">
+                <span>⭐ 4.8</span>
+                <p>App Store Rating</p>
+            </div>
+        </div>
       </div>
     </div>
   );

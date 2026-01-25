@@ -1,0 +1,115 @@
+.add-view {
+    background: white;
+    padding: 40px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.add-img-upload {
+    margin-bottom: 32px;
+}
+
+.add-img-upload p {
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+
+.upload-placeholder {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.upload-placeholder:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+.upload-placeholder i {
+    font-size: 32px;
+}
+
+.upload-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--primary-color);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.flex-col p {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.flex-col input,
+.flex-col select,
+.flex-col textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    background: var(--bg-soft);
+    transition: var(--transition-fast);
+}
+
+.flex-col input:focus,
+.flex-col select:focus,
+.flex-col textarea:focus {
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.add-product-description {
+    margin-bottom: 32px;
+}
+
+.add-btn {
+    width: fit-content;
+    padding: 14px 40px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 14px rgba(255, 56, 92, 0.4);
+    transition: var(--transition-normal);
+}
+
+.add-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(255, 56, 92, 0.5);
+}

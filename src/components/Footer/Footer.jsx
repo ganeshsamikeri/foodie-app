@@ -5,49 +5,78 @@ import { assets } from "../../assets/assets";
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-container">
-        {/* Left section - Logo and about */}
-        <div className="footer-left">
-          <h2 className="footer-logo">FOODIE</h2>
-          <p className="footer-desc">
-            Bringing delicious meals straight to your doorstep. Order your
-            favorite dishes anytime, anywhere with Foodie 🍴.
-          </p>
-          <div className="footer-socials">
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img src={assets.facebook_icon} alt="Facebook" />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img src={assets.linkedin_icon} alt="Instagram" />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <img src={assets.twitter_icon} alt="Twitter" />
-            </a>
+      <div className="footer-top">
+        <div className="footer-container">
+          <div className="footer-brand">
+            <h2 className="footer-logo">FOODIE</h2>
+            <p>© 2026 Foodie Technologies Pvt. Ltd</p>
+          </div>
+          <div className="footer-column">
+            <h3>Company</h3>
+            <ul>
+              <li>About</li>
+              <li>Careers</li>
+              <li>Team</li>
+              <li>Foodie One</li>
+              <li>Foodie Instamart</li>
+              <li>Foodie Genie</li>
+            </ul>
+          </div>
+          <div className="footer-column">
+            <h3>Contact us</h3>
+            <ul>
+              <li>Help & Support</li>
+              <li>Partner with us</li>
+              <li>Ride with us</li>
+            </ul>
+          </div>
+          <div className="footer-column">
+            <h3>Legal</h3>
+            <ul>
+              <li>Terms & Conditions</li>
+              <li>Cookie Policy</li>
+              <li>Privacy Policy</li>
+            </ul>
+          </div>
+          <div className="footer-apps">
+            <img src={assets.app_store} alt="App Store" />
+            <img src={assets.play_store} alt="Play Store" />
           </div>
         </div>
-
-        {/* Middle section - Links */}
-        <div className="footer-middle">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/cart">Cart</a></li>
-            <li><a href="/order">Place Order</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </div>
-
-        {/* Right section - Contact */}
-        <div className="footer-right">
-          <h3>Contact</h3>
-          <p>Email: support@foodie.com</p>
-          <p>Phone: +1 (555) 234-5678</p>
-          <p>Address: 123 Food Street, Taste City</p>
+      </div>
+      
+      <div className="footer-middle-links">
+        <div className="footer-container">
+            <div className="city-list">
+                <h3>We deliver to:</h3>
+                <div className="cities">
+                    <span>Bangalore</span>
+                    <span>Gurgaon</span>
+                    <span>Bhubaneswar</span>
+                    <span>Hyderabad</span>
+                    <span>Delhi</span>
+                    <span>Mumbai</span>
+                    <span>Pune</span>
+                    <span>Kolkata</span>
+                    <span>Chennai</span>
+                    <span>Ahmedabad</span>
+                    <span className="see-more">589 cities</span>
+                </div>
+            </div>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Foodie. All Rights Reserved.</p>
+        <div className="footer-container">
+            <div className="footer-social-row">
+                <div className="footer-logo-small">FOODIE</div>
+                <div className="footer-social-icons">
+                    <img src={assets.facebook_icon} alt="" />
+                    <img src={assets.linkedin_icon} alt="" />
+                    <img src={assets.twitter_icon} alt="" />
+                </div>
+            </div>
+        </div>
       </div>
     </footer>
   );

@@ -11,6 +11,7 @@ import LoginPopup from "./components/LoginPopup/LoginPopup";
 import FloatingCartButton from "./components/FloatingCartButton/FloatingCartButton";
 import FloatingBottomBar from "./components/FloatingBottomBar/FloatingBottomBar";
 import ChatSupportPanel from "./components/ChatSupportPanel/ChatSupportPanel";
+import NotificationBar from "./components/NotificationBar/NotificationBar";
 
 // Pages
 import Home from "./Pages/Home/Home";
@@ -21,13 +22,18 @@ import Menu from "./Pages/Menu/Menu";
 import MobileApp from "./Pages/MobileApp/MobileApp";
 import Contact from "./Pages/Contact/Contact";
 import MyOrders from "./Pages/MyOrders/MyOrders";
-import AdminOrders from "./Pages/AdminOrders/AdminOrders";
+
+// Admin Pages
+import AdminPanel from "./Pages/admin/AdminPanel";
 import AdminDashboard from "./Pages/admin/AdminDashboard";
+import Add from "./Pages/admin/Add";
+import List from "./Pages/admin/List";
+import AdminOrders from "./Pages/AdminOrders/AdminOrders";
 
 /* =========================
    🔐 PROTECTED ROUTE
 ========================= */
-const ProtectedRoute = ({ user, children }) => {
+const ProtectedRoute = ({ user, children, adminOnly = false }) => {
   if (!user?.token) {
     toast.error("Please login to continue");
     return <Navigate to="/" replace />;
@@ -68,6 +74,7 @@ const App = () => {
 
   return (
     <div className="app-wrapper">
+      <NotificationBar />
       <Navbar
         user={user}
         onLoginClick={() => setShowLogin(true)}
@@ -100,9 +107,16 @@ const App = () => {
           }
         />
 
-        <Route path="/admin/orders" element={<AdminOrders />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        {/* 🛠️ Admin Panel Routes */}
+        <Route path="/admin" element={<AdminPanel />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="add" element={<Add />} />
+          <Route path="list" element={<List />} />
+          <Route path="orders" element={<AdminOrders />} />
+        </Route>
       </Routes>
+
 
       <FloatingCartButton onClick={() => navigate("/cart")} />
 

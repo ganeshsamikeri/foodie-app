@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
+import { toast } from "react-hot-toast";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,6 +14,15 @@ const Navbar = ({ user, onLoginClick, onLogout }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // SEARCH
   const [showSearch, setShowSearch] = useState(false);
@@ -121,33 +131,28 @@ const Navbar = ({ user, onLoginClick, onLogout }) => {
         />
       )}
 
-      <div className={`navbar ${showSearch ? "hide" : ""}`}>
-        <Link
-          to="/"
-          className="navbar-title"
-          onClick={() => handleMenuClick("home")}
-        >
-          FOODIE
-        </Link>
-
-        {/* Hamburger */}
-        <div
-          className={`hamburger ${isOpen ? "open" : ""}`}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <span />
-          <span />
-          <span />
+      <div className={`navbar ${showSearch ? "hide" : ""} ${scrolled ? "scrolled" : ""}`}>
+        <div className="navbar-left">
+          <Link
+            to="/"
+            className="navbar-title"
+            onClick={() => handleMenuClick("home")}
+          >
+            FOODIE
+          </Link>
+          <div className="navbar-divider"></div>
+          <div className="location-selector">
+            <span className="location-type">Other</span>
+            <span className="location-name">Mumbai, Maharashtra, India</span>
+            <span className="location-arrow">▼</span>
+          </div>
         </div>
+
+
+
 
         {/* Menu */}
         <ul className={`navbar-menu ${isOpen ? "open" : ""}`}>
-          <li
-            className={menu === "home" ? "active" : ""}
-            onClick={() => handleMenuClick("home")}
-          >
-            <Link to="/">HOME</Link>
-          </li>
           <li
             className={menu === "menu" ? "active" : ""}
             onClick={() => handleMenuClick("menu")}
@@ -155,34 +160,36 @@ const Navbar = ({ user, onLoginClick, onLogout }) => {
             <Link to="/menu">MENU</Link>
           </li>
           <li
-            className={menu === "mobile-app" ? "active" : ""}
-            onClick={() => handleMenuClick("mobile-app")}
+            className={menu === "offers" ? "active" : ""}
+            onClick={() => handleMenuClick("offers")}
           >
-            <Link to="/mobile-app">MOBILE APP</Link>
+            <Link to="/offers" className="menu-item-with-icon">
+              <span className="offer-tag-icon">🏷️</span> OFFERS
+            </Link>
           </li>
           <li
             className={menu === "contact-us" ? "active" : ""}
             onClick={() => handleMenuClick("contact-us")}
           >
-            <Link to="/contact-us">CONTACT US</Link>
+            <Link to="/contact-us">HELP</Link>
           </li>
         </ul>
 
         {/* Right Section */}
         <div className="navbar-right">
-          {/* Search Icon */}
           <div className="nav-icon-wrapper" onClick={() => setShowSearch(true)}>
             <img src={assets.search_icon} className="nav-icon" alt="Search" />
+            <span className="nav-label">Search</span>
           </div>
 
-          {/* Cart Icon with badge */}
           <Link to="/cart" className="nav-icon-wrapper">
-            <img src={assets.basket_icon} className="nav-icon" alt="Cart" />
-            {cartCount > 0 && <div className="dot">{cartCount}</div>}
+            <div className="cart-icon-container">
+              <img src={assets.basket_icon} className="nav-icon" alt="Cart" />
+              {cartCount > 0 && <span className="cart-count-badge">{cartCount}</span>}
+            </div>
+            <span className="nav-label">Cart</span>
           </Link>
 
-
-          {/* User Profile */}
           {!user ? (
             <button className="signin-btn" onClick={onLoginClick}>
               Sign In
@@ -193,45 +200,41 @@ const Navbar = ({ user, onLoginClick, onLogout }) => {
                 className="profile-container"
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
               >
-                <div className="profile-initial">
-                  {user?.name?.charAt(0)?.toUpperCase() || "U"}
-                </div>
+                {user?.name?.charAt(0)?.toUpperCase()}
               </div>
 
               {isProfileOpen && (
                 <div className="profile-dropdown">
                   <div className="pd-user">
-                    <strong>{user?.name || "User"}</strong>
-                    <p className="pd-email">{user?.email || "user@example.com"}</p>
+                    <strong>{user?.name}</strong>
+                    <p>{user?.email}</p>
                   </div>
                   
-                  <Link 
-                    to="/profile" 
-                    className="pd-link"
-                    onClick={() => setIsProfileOpen(false)}
-                  >
-                    <i className="pd-icon">👤</i> Profile
+                  <Link to="/profile" className="pd-link" onClick={() => setIsProfileOpen(false)}>
+                    👤 Profile
                   </Link>
-                  
-                  <Link 
-                    to="/my-orders" 
-                    className="pd-link"
-                    onClick={() => setIsProfileOpen(false)}
-                  >
-                    <i className="pd-icon">📦</i> My Orders
+                  <Link to="/my-orders" className="pd-link" onClick={() => setIsProfileOpen(false)}>
+                    📦 My Orders
                   </Link>
-                  
-                  <button 
-                    className="pd-logout-btn"
-                    onClick={handleLogout}
-                  >
-                    <i className="pd-icon">🚪</i> Logout
+                  <button className="pd-logout-btn" onClick={handleLogout}>
+                    🚪 Logout
                   </button>
                 </div>
               )}
             </>
           )}
+
+          {/* Hamburger */}
+          <div
+            className={`hamburger ${isOpen ? "open" : ""}`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
+
       </div>
 
       {/* Search Modal */}
@@ -266,7 +269,7 @@ const Navbar = ({ user, onLoginClick, onLogout }) => {
                   key={item._id} 
                   className="result-item"
                   onClick={() => {
-                    navigate(`/food/${item._id}`);
+                    toast.success(`${item.name} added to search focus`);
                     setShowSearch(false);
                   }}
                 >
@@ -281,8 +284,27 @@ const Navbar = ({ user, onLoginClick, onLogout }) => {
             ) : query.trim() ? (
               <div className="no-results">No results found for "{query}"</div>
             ) : (
-              <div className="search-placeholder">
-                <p>Search for your favorite food items</p>
+              <div className="search-discovery">
+                <div className="discovery-section">
+                  <h3>Recent Searches</h3>
+                  <div className="discovery-tags">
+                    <span>Pizza</span>
+                    <span>Burger</span>
+                    <span>Momos</span>
+                    <span>Pasta</span>
+                  </div>
+                </div>
+                <div className="discovery-section">
+                  <h3>Popular Cuisines</h3>
+                  <div className="cuisine-grid">
+                    <div className="cuisine-item"><span className="cuisine-emoji">🍔</span> <h4>Burger</h4></div>
+                    <div className="cuisine-item"><span className="cuisine-emoji">🍕</span> <h4>Pizza</h4></div>
+                    <div className="cuisine-item"><span className="cuisine-emoji">🍝</span> <h4>Chinese</h4></div>
+                    <div className="cuisine-item"><span className="cuisine-emoji">🍦</span> <h4>Desserts</h4></div>
+                    <div className="cuisine-item"><span className="cuisine-emoji">🥘</span> <h4>North Indian</h4></div>
+                    <div className="cuisine-item"><span className="cuisine-emoji">🍹</span> <h4>Beverages</h4></div>
+                  </div>
+                </div>
               </div>
             )}
           </div>

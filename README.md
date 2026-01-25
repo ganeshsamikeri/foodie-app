@@ -1,85 +1,16 @@
-# 🍔 Foodie Frontend (React)
+# React + Vite
 
-A **Swiggy-like food ordering frontend application** built using **React (Vite)** and deployed on **Vercel**.  
-This frontend securely consumes REST APIs from a **Spring Boot backend** using **JWT authentication**.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🚀 Live Demo
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-🔗 **Frontend URL:**  
-👉 https://foodie-app-navy.vercel.app
+## React Compiler
 
----
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## 🛠 Tech Stack
+## Expanding the ESLint configuration
 
-- ⚛️ **React (Vite)**
-- 🧭 **React Router**
-- 🌐 **Axios**
-- 🎨 **CSS (Responsive UI – Mobile / Tablet / Desktop)**
-- 🔐 **JWT Authentication (LocalStorage)**
-- 🚀 **Vercel Deployment**
-
----
-
-## ✨ Features
-
-- 🔐 User Authentication (Login / Logout)
-- 🧾 Browse Food Menu
-- 🛒 Add to Cart
-- 📦 Place Orders
-- 📜 View **My Orders**
-- 🔁 Reorder Previous Orders
-- 🛡 Protected Routes
-- 📱 Fully Responsive UI
-
----
-
-## 🔐 Authentication Flow
-
-1. User logs in using email & password
-2. Backend returns a **JWT token**
-3. Token is stored in **LocalStorage**
-4. Token is attached to every API request
-
-```http
-Authorization: Bearer <JWT_TOKEN>
-
-📂 Project Structure
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── context/
-│   ├── api/
-│   ├── assets/
-│   └── App.jsx
-├── index.html
-├── package.json
-└── vite.config.js
-
-▶️ Run Locally
-git clone https://github.com/ganeshamikeri/foodie-frontend.git
-cd foodie-frontend
-npm install
-npm run dev
-
-🔗 Backend Repository
-
-👉 https://github.com/ganeshamikeri/foodie-backend
-
-👨‍💻 Author
-
-Ganesh Gani
-GitHub: https://github.com/ganeshamikeri
-
-⭐ Notes
-
-Backend is deployed separately on Render
-
-CORS is configured to allow this frontend
-
-JWT token is securely handled in frontend
-
-💡 This project is built for learning full-stack development, JWT security, and real-world deployment.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

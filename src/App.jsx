@@ -28,7 +28,10 @@ import AdminPanel from "./Pages/admin/AdminPanel";
 import AdminDashboard from "./Pages/admin/AdminDashboard";
 import Add from "./Pages/admin/Add";
 import List from "./Pages/admin/List";
-import AdminOrders from "./Pages/AdminOrders/AdminOrders";
+import AdminOrders from "./Pages/admin/AdminOrders";
+
+
+
 
 /* =========================
    🔐 PROTECTED ROUTE
